@@ -1,37 +1,43 @@
-import pandas as pd  
+# 个人简历  
   
-# 定义常量  
-CSV_FILE_PATH = r'C:\Users\ma177\Desktop\Sales_7847a20feb3241b648d7e38772c91934.csv'  
-PRODUCT_COLUMN = 'Product'  
-TOTAL_SALES_COLUMN = 'Total Sales'  
-DATE_COLUMN = 'Date'  
+## 基本信息  
   
-try:  
-    # 读取销售数据 CSV 文件  
-    sales_data = pd.read_csv(CSV_FILE_PATH)  
-      
-    # 计算每种产品的总销售额  
-    product_sales = sales_data.groupby(PRODUCT_COLUMN)[TOTAL_SALES_COLUMN].sum()  
-      
-    # 找到最畅销的产品和销售额  
-    best_selling_product = product_sales.idxmax()  
-    best_selling_amount = product_sales.max()  
-      
-    # 找到销售额最高的日期和销售额  
-    max_sales_row = sales_data.loc[sales_data[TOTAL_SALES_COLUMN].idxmax()]  
-    max_sales_date = max_sales_row[DATE_COLUMN]  
-    max_sales_amount = max_sales_row[TOTAL_SALES_COLUMN]  
-      
-    # 输出分析结果  
-    print(f'每种产品的总销售额:\n{product_sales}')  
-    print(f'\n最畅销的产品是 {best_selling_product}，销售额为 ${best_selling_amount:.2f}')  
-    print(f'销售额最高的日期是 {max_sales_date}，销售额为 ${max_sales_amount:.2f}')  
-      
-except FileNotFoundError:  
-    print(f"文件未找到：{CSV_FILE_PATH}")  
-except pd.errors.EmptyDataError:  
-    print("文件为空或格式不正确")  
-except pd.errors.ParserError:  
-    print("文件解析错误，请检查CSV格式")  
-except Exception as e:  
-    print(f"发生了一个错误：{e}")
+- **姓名**：张德政  
+- **联系方式**：
+  - 电话：+85259575935
+  - 邮箱：dezhengzhang@LN.hk 
+- **地址**：香港新界屯门区屯安里1号叠因庭
+- **GitHub**：henry4142454
+  
+## 教育背景  
+  
+- **[学位]**，融合科技硕士，岭南大学，2024 -2025 
+  - 相关课程：计算机系统与程序基础，控制系统和人工智能应用程序，数据分析和数据处理
+    
+## 技能  
+  
+- **编程语言**：Python, Java, JavaScript, C++, etc.  
+- **框架和库**：React, Django, TensorFlow, PyTorch, etc.  
+- **工具**：Git, Docker, Kubernetes, AWS, etc.  
+- **其他技能**：数据分析, 机器学习, 项目管理, 团队协作, etc.  
+    
+## 语言能力  
+  
+- **[语言]**：中文良好，英语雅思6.5
+  
+## 兴趣爱好  
+  
+- 毛笔书法
+- 各项球类活动
+- 唱歌 看剧
+  
+---  
+  
+### 注意事项  
+  
+1. **格式清晰**：保持格式整洁，使用Markdown语法来区分标题、列表和段落。  
+2. **简洁明了**：尽量用简洁的语言描述你的经历和成就，避免冗长的句子。  
+3. **量化成果**：如果有可能，尽量用数据来量化你的成就（如：提升了20%的效率）。  
+4. **检查拼写和语法**：确保简历中没有拼写和语法错误。  
+  
+希望这个模板能帮助你创建一个优秀的Markdown简历！
