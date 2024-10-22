@@ -1,56 +1,37 @@
-<!DOCTYPE html>  
-<html lang="en">  
-<head>  
-    <meta charset="UTF-8">  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <title>个人网站</title>  
-    <link rel="stylesheet" href="styles.css">  
-</head>  
-<body>  
-    <header>  
-        <h1>欢迎来到我的个人网站</h1>  
-        <nav>  
-            <ul>  
-                <li><a href="#home">首页</a></li>  
-                <li><a href="#about">关于我</a></li>  
-                <li><a href="#projects">项目</a></li>  
-                <li><a href="#contact">联系</a></li>  
-            </ul>  
-        </nav>  
-    </header>  
+import pandas as pd  
+  
+# 定义常量  
+CSV_FILE_PATH = r'C:\Users\ma177\Desktop\Sales_7847a20feb3241b648d7e38772c91934.csv'  
+PRODUCT_COLUMN = 'Product'  
+TOTAL_SALES_COLUMN = 'Total Sales'  
+DATE_COLUMN = 'Date'  
+  
+try:  
+    # 读取销售数据 CSV 文件  
+    sales_data = pd.read_csv(CSV_FILE_PATH)  
       
-    <section id="home">  
-        <h2>首页</h2>  
-        <p>这里是我的个人网站的首页。</p>  
-    </section>  
+    # 计算每种产品的总销售额  
+    product_sales = sales_data.groupby(PRODUCT_COLUMN)[TOTAL_SALES_COLUMN].sum()  
       
-    <section id="about">  
-        <h2>关于我</h2>  
-        <p>我是[张德政]。</p>  
-    </section>  
+    # 找到最畅销的产品和销售额  
+    best_selling_product = product_sales.idxmax()  
+    best_selling_amount = product_sales.max()  
       
-    <section id="projects">  
-        <h2>项目</h2>  
-        <ul>  
-            <li><a href="project1.html">项目1</a></li>  
-            <li><a href="project2.html">项目2</a></li>  
-            <!-- 你可以继续添加更多项目 -->  
-        </ul>  
-    </section>  
+    # 找到销售额最高的日期和销售额  
+    max_sales_row = sales_data.loc[sales_data[TOTAL_SALES_COLUMN].idxmax()]  
+    max_sales_date = max_sales_row[DATE_COLUMN]  
+    max_sales_amount = max_sales_row[TOTAL_SALES_COLUMN]  
       
-    <section id="contact">  
-        <h2>联系</h2>  
-        <p>你可以通过以下方式联系我：</p>  
-        <ul>  
-            <li>邮箱：[dezhengzhang@LN.hk]</li>  
-            <li>GitHub：<a href="https://github.com/[henry4142454]">@[henry4142454]</a></li>  
-        </ul>  
-    </section>  
+    # 输出分析结果  
+    print(f'每种产品的总销售额:\n{product_sales}')  
+    print(f'\n最畅销的产品是 {best_selling_product}，销售额为 ${best_selling_amount:.2f}')  
+    print(f'销售额最高的日期是 {max_sales_date}，销售额为 ${max_sales_amount:.2f}')  
       
-    <footer>  
-        <p>&copy; 2023 [张德政]. 保留所有权利。</p>  
-    </footer>  
-      
-    <script src="scripts.js"></script>  
-</body>  
-</html> 
+except FileNotFoundError:  
+    print(f"文件未找到：{CSV_FILE_PATH}")  
+except pd.errors.EmptyDataError:  
+    print("文件为空或格式不正确")  
+except pd.errors.ParserError:  
+    print("文件解析错误，请检查CSV格式")  
+except Exception as e:  
+    print(f"发生了一个错误：{e}")
